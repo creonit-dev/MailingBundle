@@ -1,0 +1,8 @@
+services:
+    admin.mailing_module:
+        class: Creonit\MailingBundle\Admin\MailingModule
+        tags: [{ name: creonit_admin.module }]
+
+    creonit_mailing:
+        class: Creonit\MailingBundle\Service\Mailing
+        calls: [ [setMailer, ['@mailer']], [setTemplating, ['@twig']] ]

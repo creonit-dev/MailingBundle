@@ -1,0 +1,15 @@
+{
+  "name": "creonit/mailing-bundle",
+  "keywords": [
+    "creonit",
+    "symfony",
+    "bundle",
+    "mailing",
+  ],
+  "license": "GNU GPLv3",
+  "autoload": {
+    "psr-4": {
+      "Creonit\\MailingBundle\\": ""
+    }
+  }
+}

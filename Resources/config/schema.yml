@@ -1,0 +1,52 @@
+config:
+    required: true
+
+database:
+    +:
+        name: default
+        namespace: Creonit\MailingBundle\Model
+        defaultIdMethod: native
+
+    +vendor:
+        type: mysql
+        parameters:
+            Engine: InnoDB
+            Charset: utf8
+
+    +behavior:
+        - auto_add_pk
+
+    mailing_channel:
+        title: text
+        name: varchar(20) key
+        visible: bool = 1
+        +behavior: [sortable]
+
+    mailing_subscriber:
+        user_id: - int > user.id
+        title: text
+        email: text
+        +behavior: [timestampable]
+
+    mailing_subscriber_channel:
+        subscriber_id: int > mailing_subscriber.id
+        channel_id: int > mailing_channel.id
+        +behavior: [timestampable]
+
+    mailing_broadcast:
+        title: text
+        content: text
+        status: tinyint
+        started_at: datetime
+        +behavior: [timestampable]
+
+    mailing_broadcast_channel:
+        broadcast_id: int > mailing_broadcast.id
+        channel_id: int > mailing_channel.id
+
+    mailing_template:
+        title: text
+        name: varchar(20) key
+        content: text
+        variables: text
+        +behavior: [sortable]
