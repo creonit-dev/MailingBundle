@@ -4,7 +4,7 @@
     "creonit",
     "symfony",
     "bundle",
-    "mailing",
+    "mailing"
   ],
   "license": "GNU GPLv3",
   "autoload": {
