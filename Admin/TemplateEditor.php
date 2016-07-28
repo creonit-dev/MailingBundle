@@ -18,7 +18,7 @@ class TemplateEditor extends EditorComponent
      * @template
      * {{ name | text | group('Идентификатор') }}
      * {{ title | text | group('Заголовок') }}
-     * {{ content | textedit | group('Содержание') }}
+     * {{ content | text | group('Содержание') }}
      * {{ variables | textarea | group('Примечание', {notice: 'Для служебного использования'}) }}
      */
     public function schema()
