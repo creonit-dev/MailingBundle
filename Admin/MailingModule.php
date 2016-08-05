@@ -7,6 +7,16 @@ use Creonit\AdminBundle\Module;
 class MailingModule extends Module
 {
 
+    protected function configure()
+    {
+        $this
+            ->setTitle('Рассылка')
+            ->setIcon('envelope-o')
+            ->setTemplate('SubscriberTable')
+            ->setPermission('ROLE_ADMIN_MAILING')
+        ;
+    }
+
     public function initialize()
     {
         $this->addComponent(new ChannelTable);
@@ -24,17 +34,4 @@ class MailingModule extends Module
         
     }
 
-    public function getTemplate()
-    {
-        return '<div js-component="Mailing.SubscriberTable">';
-    }
-
-    public function getIcon()
-    {
-        return 'fa fa-envelope-o';
-    }
-
-    public function getTitle(){
-        return 'Рассылка';
-    }
 }
