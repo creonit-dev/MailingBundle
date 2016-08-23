@@ -18,7 +18,7 @@ database:
 
     mailing_channel:
         title: text
-        name: varchar(20) key
+        name: varchar(50) key
         visible: bool = 1
         +behavior: [sortable]
 
@@ -46,7 +46,7 @@ database:
 
     mailing_template:
         title: text
-        name: varchar(20) key
+        name: varchar(50) key
         content: text
         variables: text
         +behavior: [sortable]
