@@ -114,7 +114,7 @@ class Mailing
 
 
         $message->setBody($body, 'text/html', 'utf-8');
-        $message->setCharset('utf-8');
+        $message->setEncoder(\Swift_Encoding::get7BitEncoding());
 
         return $message;
 
