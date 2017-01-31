@@ -13,7 +13,6 @@ class MailingModule extends Module
             ->setTitle('Рассылка')
             ->setIcon('envelope-o')
             ->setTemplate('SubscriberTable')
-            ->setPermission('ROLE_ADMIN_MAILING')
         ;
     }
 
