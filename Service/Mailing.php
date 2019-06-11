@@ -106,7 +106,7 @@ class Mailing
             }
 
             if(!$subject){
-                $message->setSubject($this->getTemplate($name)->getTitle());
+                $message->setSubject($this->renderSubject($this->getTemplate($name)->getTitle(), $parameters));
             }
 
             $body = $this->renderTemplate($name, $parameters);
@@ -118,6 +118,11 @@ class Mailing
 
         return $message;
 
+    }
+
+    public function renderSubject($subject, $params = [])
+    {
+        return $this->templating->createTemplate($subject)->render($params);
     }
 
     public function send(\Swift_Message $message, $to = null){
