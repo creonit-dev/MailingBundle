@@ -18,7 +18,11 @@
     "symfony/framework-bundle": "^4.4|^5.0",
     "symfony/event-dispatcher": "^4.4|^5.0",
     "symfony/mailer": "^4.4|^5.0",
-    "symfony/yaml": "^4.4|^5.0"
+    "symfony/yaml": "^4.4|^5.0",
+    "creonit/admin-bundle": ">=1.0.2",
+    "propel/propel": "^2.0",
+    "propel/propel-bundle": "^5.0",
+    "creonit/propel-schema-converter-bundle": "^0.2.5"
   },
   "require-dev": {
     "symfony/profiler-pack": "^1.0"

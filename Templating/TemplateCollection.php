@@ -2,8 +2,7 @@
 
 namespace Creonit\MailingBundle\Templating;
 
-
-class TemplateCollection
+class TemplateCollection implements \Countable, \IteratorAggregate
 {
     /**
      * @var MailingTemplate[]
@@ -25,10 +24,25 @@ class TemplateCollection
         return $this->templates[$key] ?? null;
     }
 
+    public function keys()
+    {
+        return array_keys($this->templates);
+    }
+
     public function add(MailingTemplate $template)
     {
         $this->templates[$template->getKey()] = $template;
 
         return $this;
+    }
+
+    public function count()
+    {
+        return count($this->templates);
+    }
+
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->templates);
     }
 }

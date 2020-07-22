@@ -6,6 +6,7 @@ namespace Creonit\MailingBundle\Templating\Loader;
 use Creonit\MailingBundle\Templating\Exception\InvalidConfigurationException;
 use Creonit\MailingBundle\Templating\MailingTemplate;
 use Creonit\MailingBundle\Templating\TemplateCollection;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Yaml\Yaml;
 
 class YamlTemplateLoader extends FileTemplateLoader
@@ -26,7 +27,7 @@ class YamlTemplateLoader extends FileTemplateLoader
                 ->setTitle($config['title'])
                 ->setSubject($config['subject'])
                 ->setTemplate($config['template'])
-                ->setFrom($config['from'] ?? null);
+                ->setFrom($this->normalizeFrom($config['from'] ?? null));
 
             $templateCollection->add($template);
         }
@@ -47,5 +48,18 @@ class YamlTemplateLoader extends FileTemplateLoader
                 throw new InvalidConfigurationException(sprintf('Parameter "%s" is not string. Template "%s" in %s', $field, $key, $resource));
             }
         }
+    }
+
+    protected function normalizeFrom($from)
+    {
+        if (!$from) {
+            return null;
+        }
+
+        if (is_array($from)) {
+            return new Address($from['email'] ?? '', $from['name'] ?? '');
+        }
+
+        return $from;
     }
 }

@@ -1,0 +1,26 @@
+config:
+    required: true
+
+database:
+    +:
+        name: default
+        namespace: Creonit\MailingBundle\Model
+        defaultIdMethod: native
+        identifierQuoting: true
+
+    +vendor:
+        type: mysql
+        parameters:
+            Engine: InnoDB
+            Charset: utf8
+
+    +behavior:
+        - auto_add_pk
+
+    mailing_template:
+        +: {identifierQuoting: true}
+        key: varchar(255) pk
+        title: varchar(255)
+        subject: varchar(255)
+        template: text
+        from: object

@@ -4,7 +4,7 @@ namespace Creonit\MailingBundle;
 
 
 use Creonit\MailingBundle\Config\ParameterBag;
-use Creonit\MailingBundle\Exception\NotFoundMessageBuilderException;
+use Creonit\MailingBundle\Exception\MessageBuilderNotFoundException;
 use Creonit\MailingBundle\Message\MailingMessage;
 use Creonit\MailingBundle\Message\MessageBuilderInterface;
 use Creonit\MailingBundle\Templating\Templating;
@@ -69,7 +69,7 @@ class Mailing
             }
         }
 
-        throw new NotFoundMessageBuilderException($template, $context);
+        throw new MessageBuilderNotFoundException($template, $context);
     }
 
     protected function injectGlobals(array &$context)

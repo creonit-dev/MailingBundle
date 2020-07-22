@@ -3,12 +3,19 @@
 namespace Creonit\MailingBundle\Templating;
 
 
+use Symfony\Component\Mime\Address;
+
 class MailingTemplate
 {
     protected $key;
     protected $title;
     protected $subject;
-    protected $from;
+
+    /**
+     * @var string|Address
+     */
+    protected $from = '';
+
     protected $copy;
     protected $template;
     protected $resource = '';
@@ -46,7 +53,7 @@ class MailingTemplate
     }
 
     /**
-     * @return mixed
+     * @return string|Address
      */
     public function getFrom()
     {
@@ -54,7 +61,7 @@ class MailingTemplate
     }
 
     /**
-     * @param mixed $from
+     * @param string|Address $from
      *
      * @return $this
      */

@@ -17,6 +17,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('from')->isRequired()->end()
                 ->scalarNode('templates_path')->end()
+                ->scalarNode('base_template')->defaultValue('@CreonitMailing/mail.html.twig')->end()
             ->end();
 
         $this->addGlobals($rootNode);

@@ -6,6 +6,7 @@ services:
         autoconfigure: true
         bind:
             $templatesPath: '%creonit_mailing.config.templates_path%'
+            $baseTemplate: '%creonit_mailing.config.base_template%'
 
     creonit_mailing:
         class: Creonit\MailingBundle\Mailing
@@ -20,3 +21,8 @@ services:
         autowire: true
 
     Creonit\MailingBundle\Templating\Templating: '@creonit_mailing.templating'
+
+    Creonit\MailingBundle\Templating\Loader\DatabaseTemplateLoader:
+        class: Creonit\MailingBundle\Templating\Loader\DatabaseTemplateLoader
+        tags:
+            - {name: 'creonit_mailing.template_loader', priority: -1000}

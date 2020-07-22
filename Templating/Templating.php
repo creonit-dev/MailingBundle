@@ -46,4 +46,12 @@ class Templating
 
         return $this->templates->get($key);
     }
+
+    /**
+     * @return TemplateCollection|MailingTemplate[]
+     */
+    public function getTemplates(): TemplateCollection
+    {
+        return $this->templates;
+    }
 }
