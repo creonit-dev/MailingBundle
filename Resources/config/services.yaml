@@ -1,0 +1,22 @@
+services:
+    Creonit\MailingBundle\:
+        resource: '../../*'
+        exclude: '../../{DependencyInjection,Model,Entity,Tests,Exception}'
+        autowire: true
+        autoconfigure: true
+        bind:
+            $templatesPath: '%creonit_mailing.config.templates_path%'
+
+    creonit_mailing:
+        class: Creonit\MailingBundle\Mailing
+        autowire: true
+
+    Creonit\MailingBundle\Mailing:
+        alias: creonit_mailing
+        public: true
+
+    creonit_mailing.templating:
+        class: Creonit\MailingBundle\Templating\Templating
+        autowire: true
+
+    Creonit\MailingBundle\Templating\Templating: '@creonit_mailing.templating'

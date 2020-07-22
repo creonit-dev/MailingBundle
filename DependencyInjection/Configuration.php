@@ -2,30 +2,51 @@
 
 namespace Creonit\MailingBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-/**
- * This is the class that validates and merges configuration from your app/config files.
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/configuration.html}
- */
 class Configuration implements ConfigurationInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('creonit_mailing');
+        $treeBuilder = new TreeBuilder('creonit_mailing');
+        $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
             ->children()
-                ->variableNode('from')->isRequired()->end()
-                ->scalarNode('template')->end()
+                ->scalarNode('from')->isRequired()->end()
+                ->scalarNode('templates_path')->end()
             ->end();
 
+        $this->addGlobals($rootNode);
+
         return $treeBuilder;
+    }
+
+    public function addGlobals(ArrayNodeDefinition $rootNode)
+    {
+        $rootNode
+            ->children()
+                ->arrayNode('globals')
+                    ->prototype('array')
+                        ->beforeNormalization()
+                        ->always()
+                        ->then(function ($v) {
+                            if (\is_string($v) && 0 === strpos($v, '@')) {
+                                return ['type' => 'service', 'value' => substr($v, 1)];
+                            }
+
+                            return ['type' => 'variable', 'value' => $v];
+                        })
+                        ->end()
+                        ->children()
+                            ->scalarNode('type')->end()
+                            ->variableNode('value')->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end();
+
     }
 }

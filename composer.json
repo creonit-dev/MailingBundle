@@ -1,15 +1,26 @@
 {
   "name": "creonit/mailing-bundle",
+  "type": "symfony-bundle",
+  "description": "",
+  "license": "GPL-3.0-only",
+  "version": "1.0.0",
   "keywords": [
     "creonit",
-    "symfony",
-    "bundle",
-    "mailing"
+    "symfony"
   ],
-  "license": "GPL-3.0-only",
   "autoload": {
     "psr-4": {
       "Creonit\\MailingBundle\\": ""
     }
+  },
+  "require": {
+    "php": ">=7.2.5",
+    "symfony/framework-bundle": "^4.4|^5.0",
+    "symfony/event-dispatcher": "^4.4|^5.0",
+    "symfony/mailer": "^4.4|^5.0",
+    "symfony/yaml": "^4.4|^5.0"
+  },
+  "require-dev": {
+    "symfony/profiler-pack": "^1.0"
   }
 }
