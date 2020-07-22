@@ -17,6 +17,10 @@ abstract class FileTemplateLoader extends AbstractTemplateLoader
 
     public function load(TemplateCollection $templateCollection)
     {
+        if (!$this->checkPath()) {
+            return;
+        }
+
         $finder = new Finder();
 
         $finder->in($this->templatesPath);
@@ -28,6 +32,11 @@ abstract class FileTemplateLoader extends AbstractTemplateLoader
         foreach ($finder as $file) {
             $this->loadFile($file->getPathname(), $templateCollection);
         }
+    }
+
+    protected function checkPath()
+    {
+        return file_exists($this->templatesPath);
     }
 
     abstract protected function loadFile(string $path, TemplateCollection $templateCollection);
